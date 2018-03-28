@@ -1,6 +1,6 @@
 //Notification loader blanks
 
-function leftTipCreate(node, content) {
+var leftTipCreate = function (node, content) {
   var parent = node.parentNode;
   var leftTip = document.createElement('div');
   var leftTipChild = document.createElement('div');
@@ -15,28 +15,29 @@ function leftTipCreate(node, content) {
 
 
 
-function checkFilledPseudo (field) {
+var checkFilledPseudo = function () {
 
   console.log('sasi');
 
 
-  field.addEventListener('blur', checkFilled(field))
+  this.addEventListener('blur', checkFilled);
 
 };
 
-function checkFilled (field) {
+var checkFilled = function () {
 
 console.log('eщe sasi');
 
-  if(!field.innerHTML) {
-    leftTipCreate(field, 'Fill that field')
-    field.style.border = '2px solid #d06357';
+  if(!this.innerHTML) {
+    leftTipCreate(this, 'Fill that field')
+    this.style.border = '2px solid #d06357';
   };
 
 };
 
   
 function validate(){
+
 
 
 
@@ -48,11 +49,10 @@ var userName = document.getElementById('userName'),
     logIn = document.getElementById('logIn');
 
 
-userName.addEventListener('focus', checkFilledPseudo(userName));
-userPassword.addEventListener('focus', checkFilledPseudo(userPassword));
-userPasswordConfirm.addEventListener('focus', checkFilledPseudo(userPasswordConfirm));
+userName.addEventListener('focus', checkFilledPseudo);
+userPassword.addEventListener('focus', checkFilledPseudo);
+userPasswordConfirm.addEventListener('focus', checkFilledPseudo);
 logIn.addEventListener('focus', validate());
-
 
 
 
