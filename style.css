@@ -55,22 +55,25 @@ body {
 
 
 .leftTip {
-	display: inline-block;
+	display: none;
 	position: absolute;
-	left: -150px;
+	left: -170px;
 	top: -6px;
-	font-size: 12px;
-	color: '';
-
+	font-family: Roboto;
+	
 }
 
 .leftTipChild {
 	position: relative;
-	width: 120px;
+	width: 135px;
 	height: 40px;
+	padding-left: 10px;
 	background-color: #d06357;
 	border-radius: 4px 0 0 4px;
 
+	line-height: 40px;
+	color:#ddd;
+	font-size: 13px;
 }
 
 .leftTipChild:after {
@@ -84,5 +87,6 @@ body {
 	border-left: 20px solid	#d06357;
 	border-bottom: 20px solid transparent;
 
+	
 }
 

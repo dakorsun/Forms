@@ -1,62 +1,42 @@
-//Notification loader blanks
-
-var leftTipCreate = function (node, content) {
-  var parent = node.parentNode;
-  var leftTip = document.createElement('div');
-  var leftTipChild = document.createElement('div');
-
-  parent.insertBefore(leftTip, node);
-  leftTip.appendChild(leftTipChild);
-  
-  leftTip.setAttribute('class', 'leftTip');
-  leftTipChild.setAttribute('class', 'leftTipChild');
-  leftTip.innerHtml = content;
-};
-
-
-
-var checkFilledPseudo = function () {
-
-  console.log('sasi');
-
-
-  this.addEventListener('blur', checkFilled);
-
-};
-
-var checkFilled = function () {
-
-console.log('eщe sasi');
-
-  if(!this.innerHTML) {
-    leftTipCreate(this, 'Fill that field')
-    this.style.border = '2px solid #d06357';
-  };
-
-};
-
-  
-function validate(){
-
-
-
-
-};
-
-var userName = document.getElementById('userName'),
+const userName = document.getElementById('userName'),
     userPassword = document.getElementById('userPassword'),
     userPasswordConfirm = document.getElementById('userPasswordConfirm'),
     logIn = document.getElementById('logIn');
 
 
-userName.addEventListener('focus', checkFilledPseudo);
-userPassword.addEventListener('focus', checkFilledPseudo);
-userPasswordConfirm.addEventListener('focus', checkFilledPseudo);
-logIn.addEventListener('focus', validate());
+function checkContent() {
+	
+	if(!this.value){
+		if(this == userPasswordConfirm){
+			showLeftTip(this, 'Passwords not match')
+		} 	else {
+				showLeftTip(this, 'Fill that field');
+		};
+	}		else {
 
+	}
 
+};
 
-// function focus() {
-// console.log('cu cu');
-// };
-// userName.addEventListener('focus', focus);
+function showLeftTip(node, content){
+	var leftTip = node.parentNode.getElementsByClassName('leftTip')[0];
+	leftTip.style.display = 'inline-block';
+	leftTip.firstElementChild.innerHTML = content;
+  node.style.border = '2px solid #d06357'
+};
+
+function hideLeftTip(){
+	var leftTip = this.parentNode
+		.getElementsByClassName('leftTip')[0];
+	leftTip.style.display = 'none';
+    this.style.border = '2px solid grey';
+}
+
+userName.addEventListener('blur', checkContent);
+userPassword.addEventListener('blur', checkContent);
+userPasswordConfirm.addEventListener('blur', checkContent);
+
+userName.addEventListener('focus', hideLeftTip);
+userPassword.addEventListener('focus', hideLeftTip);
+userPasswordConfirm.addEventListener('focus', hideLeftTip);
+
